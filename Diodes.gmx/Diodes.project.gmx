@@ -7,15 +7,28 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\sprRedTile</sprite>
+    <sprite>sprites\sprNumberButton</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
-    <script>scripts\script0.gml</script>
+    <scripts name="GameBoard">
+      <script>scripts\scrPlaceTile.gml</script>
+      <script>scripts\scrGridInit.gml</script>
+      <script>scripts\scrGridDraw.gml</script>
+    </scripts>
+    <scripts name="GameInit">
+      <script>scripts\scrGameInit.gml</script>
+      <script>scripts\scrCreateButtons.gml</script>
+      <script>scripts\scrSetGridSize.gml</script>
+      <script>scripts\scrDestroyGameInit.gml</script>
+    </scripts>
   </scripts>
   <objects name="objects">
     <object>objects\objGameBoard</object>
     <object>objects\objRedTile</object>
+    <object>objects\objGameInit</object>
+    <object>objects\objNumberButton</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmGame</room>

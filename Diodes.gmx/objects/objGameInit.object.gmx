@@ -25,20 +25,18 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Initialize Grid.
+            <string>/// Create initilization buttons.
 
-scrGridInit(objGameInit.gridSize);
+scrCreateButtons();
 </string>
           </argument>
         </arguments>
       </action>
-    </event>
-    <event eventtype="6" enumb="53">
       <action>
         <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
+        <id>611</id>
+        <kind>6</kind>
+        <userelative>-1</userelative>
         <isquestion>0</isquestion>
         <useapplyto>-1</useapplyto>
         <exetype>2</exetype>
@@ -50,10 +48,11 @@ scrGridInit(objGameInit.gridSize);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Create a red tile.
-
-scrPlaceTile();
-</string>
+            <string>gridSize</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>0</string>
           </argument>
         </arguments>
       </action>
@@ -75,9 +74,9 @@ scrPlaceTile();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Draw a grid.
+            <string>/// Launch the game initialization objects.
 
-scrGridDraw();
+scrGameInit();
 </string>
           </argument>
         </arguments>
