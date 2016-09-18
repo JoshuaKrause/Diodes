@@ -1,5 +1,8 @@
 /// Draw the grid.
 
+cellWidth = room_width / gridSize;
+cellHeight = room_height / gridSize;
+
 increment = 0;
 
 for (i = 0; i < gridSize + 1; i++)

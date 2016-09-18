@@ -7,30 +7,40 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\sprRedTile</sprite>
+    <sprite>sprites\sprGreenTile</sprite>
     <sprite>sprites\sprNumberButton</sprite>
     <sprite>sprites\sprTitleLogo</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
-    <scripts name="GameBoard">
-      <script>scripts\scrPlaceTile.gml</script>
-      <script>scripts\scrGridInit.gml</script>
-      <script>scripts\scrGridDraw.gml</script>
-      <script>scripts\scrCreateGameBoard.gml</script>
-    </scripts>
-    <scripts name="GameInit">
+    <scripts name="Menu">
       <script>scripts\scrDrawInitText.gml</script>
       <script>scripts\scrCreateButtons.gml</script>
       <script>scripts\scrSetGridSize.gml</script>
     </scripts>
+    <scripts name="GameBoard">
+      <script>scripts\scrPlaceTile.gml</script>
+      <script>scripts\scrCreateGrid.gml</script>
+      <script>scripts\scrDrawGrid.gml</script>
+      <script>scripts\scrCreateGameBoard.gml</script>
+      <script>scripts\scrResetGame.gml</script>
+      <script>scripts\scrCheckColumn.gml</script>
+      <script>scripts\scrSwitchPlayer.gml</script>
+    </scripts>
   </scripts>
   <objects name="objects">
-    <object>objects\objGameBoard</object>
-    <object>objects\objRedTile</object>
-    <object>objects\objGameInit</object>
-    <object>objects\objNumberButton</object>
-    <object>objects\objTitleLogo</object>
+    <objects name="Menu">
+      <object>objects\objTitleLogo</object>
+      <object>objects\objNumberButton</object>
+      <object>objects\objGameInit</object>
+    </objects>
+    <objects name="GameBoard">
+      <object>objects\objGameBoard</object>
+      <object>objects\objRedTile</object>
+      <object>objects\objGreenTile</object>
+      <object>objects\objTile</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmMenu</room>
