@@ -11,5 +11,5 @@ switch(image_index)
         break;
 }
 
-instance_create(0,0,objGameBoard);
+instance_create(room_width * .5, room_height * .5,objGameBoard);
 scrDestroyGameInit();

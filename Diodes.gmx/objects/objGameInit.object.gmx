@@ -74,9 +74,9 @@ scrCreateButtons();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Launch the game initialization objects.
+            <string>/// Draw initialization text.
 
-scrGameInit();
+scrDrawInitText();
 </string>
           </argument>
         </arguments>
