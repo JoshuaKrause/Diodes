@@ -2,12 +2,13 @@
 
 // Determine the grid coordinates based on the current mouse location.
 x_coord = floor(mouse_x / cellWidth);
-y_coord = floor(mouse_y / cellHeight);
 
 // Check to see if the column is empty.
-if (!scrCheckColumn(x_coord, y_coord))
+y_coord = scrGetEmptyRow(x_coord);
+
+if (y_coord < 0)
 {   
-    show_debug_message("Contents not empty.");
+    show_debug_message("Column full.");
     exit;
 }
 
@@ -27,9 +28,16 @@ else
 {
     tile = objGreenTile;
 }
-instance_create(x, y, tile);
+
+newTile = instance_create(x, 0 - cellWidth - (cellWidth * .5), tile);
+
+newTile.x_coord = x;
+newTile.y_coord = y;
+
 //show_debug_message(string(x_coord) + ", " + string(y_coord))
 
 // Switch the player.
 scrSwitchPlayer();
+
+// Output the grid for debugging.
 scrOutputGrid();
