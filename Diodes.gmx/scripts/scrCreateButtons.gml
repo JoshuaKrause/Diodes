@@ -1,4 +1,6 @@
-height = room_height * .25 + 50;
+// Create grid size selection buttons.
+
+height = room_height * .5 + 50;
 
 button0 = instance_create(room_width * .5 - 64, height, objNumberButton);
 button0.image_speed = 0;

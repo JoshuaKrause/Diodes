@@ -5,6 +5,11 @@ with (objGameInit)
     instance_destroy();
 }
 
+with (objTitleLogo)
+{
+    instance_destroy();
+}
+
 with (objNumberButton)
 {
     instance_destroy();
