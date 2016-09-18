@@ -20,13 +20,18 @@
       <script>scripts\scrSetGridSize.gml</script>
     </scripts>
     <scripts name="GameBoard">
-      <script>scripts\scrPlaceTile.gml</script>
       <script>scripts\scrCreateGrid.gml</script>
       <script>scripts\scrDrawGrid.gml</script>
       <script>scripts\scrCreateGameBoard.gml</script>
       <script>scripts\scrResetGame.gml</script>
-      <script>scripts\scrCheckColumn.gml</script>
       <script>scripts\scrSwitchPlayer.gml</script>
+      <script>scripts\scrOutputGrid.gml</script>
+      <script>scripts\scrGetEmptyRow.gml</script>
+      <script>scripts\scrPlaceTile.gml</script>
+    </scripts>
+    <scripts name="Tile">
+      <script>scripts\scrResizeTile.gml</script>
+      <script>scripts\scrUpdateTile.gml</script>
     </scripts>
   </scripts>
   <objects name="objects">
