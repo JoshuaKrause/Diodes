@@ -8,7 +8,6 @@
   <sprites name="sprites">
     <sprite>sprites\sprRedTile</sprite>
     <sprite>sprites\sprNumberButton</sprite>
-    <sprite>sprites\sprGridSize</sprite>
     <sprite>sprites\sprTitleLogo</sprite>
   </sprites>
   <backgrounds name="background"/>
@@ -18,12 +17,12 @@
       <script>scripts\scrPlaceTile.gml</script>
       <script>scripts\scrGridInit.gml</script>
       <script>scripts\scrGridDraw.gml</script>
+      <script>scripts\scrCreateGameBoard.gml</script>
     </scripts>
     <scripts name="GameInit">
       <script>scripts\scrDrawInitText.gml</script>
       <script>scripts\scrCreateButtons.gml</script>
       <script>scripts\scrSetGridSize.gml</script>
-      <script>scripts\scrDestroyGameInit.gml</script>
     </scripts>
   </scripts>
   <objects name="objects">
@@ -34,7 +33,10 @@
     <object>objects\objTitleLogo</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\rmGame</room>
+    <room>rooms\rmMenu</room>
+    <room>rooms\rmGrid_08</room>
+    <room>rooms\rmGrid_16</room>
+    <room>rooms\rmGrid_32</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

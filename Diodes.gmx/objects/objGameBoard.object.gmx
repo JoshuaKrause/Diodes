@@ -27,7 +27,20 @@
             <kind>1</kind>
             <string>/// Initialize Grid.
 
-scrGridInit(objGameInit.gridSize);
+switch(room_get_name(room))
+{
+    case("rmGrid_08"):
+        gridSize = 8;
+        break;
+    case("rmGrid_16"):
+        gridSize = 16;
+        break;
+    case("rmGrid_32"):
+        gridSize = 32;
+        break;
+}
+
+scrGridInit(gridSize);
 </string>
           </argument>
         </arguments>

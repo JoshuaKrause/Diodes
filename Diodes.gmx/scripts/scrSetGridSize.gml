@@ -1,15 +1,12 @@
 switch(image_index)
 {
     case 0:
-        objGameInit.gridSize = 8;
+        room_goto(rmGrid_08);
         break;
     case 1:
-        objGameInit.gridSize = 16;
+        room_goto(rmGrid_16);
         break;
     case 2:
-        objGameInit.gridSize = 32;
+        room_goto(rmGrid_32);
         break;
 }
-
-instance_create(room_width * .5, room_height * .5,objGameBoard);
-scrDestroyGameInit();
