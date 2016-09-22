@@ -28,6 +28,7 @@
       <script>scripts\scrOutputGrid.gml</script>
       <script>scripts\scrGetEmptyRow.gml</script>
       <script>scripts\scrPlaceTile.gml</script>
+      <script>scripts\scrCheckWin.gml</script>
     </scripts>
     <scripts name="Tile">
       <script>scripts\scrResizeTile.gml</script>
