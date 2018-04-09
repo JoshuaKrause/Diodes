@@ -1,8 +1,20 @@
 
 class Player():
 
-    def __init__(self, color):
-        self.color = color
+    def __init__(self, name, AI = None):
+        self.name = name
+        self.score = 0
+        self.hand = []
 
-    def get_color(self):
-        return self.color
+    def draw_card(self, card):
+        self.hand.append(card)
+
+    def remove_card(self, card):
+        self.hand.remove(card)
+
+    def show_hand(self):
+        return ', '.join(self.hand)
+
+    def check_hand(self, card):
+        return card in self.hand
+
