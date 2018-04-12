@@ -23,14 +23,14 @@ class Board():
 
         self.active = True
 
-    def add_piece(self, coordinates, piece):
+    def add_piece(self, card, coordinates):
         """ Adds a piece to the supplied coordinates
         coordinates = the x,y target (tuple)
         piece = the type of piece to place (string)
         """
         try:
             x, y = coordinates
-            self.state[y][x] = piece
+            self.state[y][x] = card
         except:
             print("Invalid coordinates: ", coordinates)
 
@@ -38,7 +38,7 @@ class Board():
         """ Clears the supplied coordinates. 
         coordinates = the x,y target (tuple)
         """
-        self.add_piece(coordinates, BLANK)
+        self.add_piece(BLANK, coordinates)
 
     def get_piece(self, coordinates):
         """ Returns the piece at the coordinates.
@@ -57,7 +57,7 @@ class Board():
             return True
         return False
 
-    def get_all_pieces(self):
+    def get_all_cards(self):
         """ Returns all the current pieces on the board.
         Return: list (str)
         """
@@ -75,7 +75,7 @@ class Board():
 
     def get_moves(self):
         """ Return the columns that currently have empty rows.
-        Return: list of int
+        Return: list (int)
         """
         moves = []
         for column in range(self.size):
@@ -83,16 +83,16 @@ class Board():
             if row == None:
                 continue
             if row >= 0:
-                moves.append((column, row))
+                moves.append(column)
         return moves
 
-    def drop_piece(self, column, piece):
+    def drop_piece(self, card, column):
         """ Finds the first empty row of the supplied column and places a piece there.
         column = the x coordiate (int)
         piece = the piece to place (string)
         """
         coordinates = (column, self.find_empty_row(column))
-        self.add_piece(coordinates, piece)
+        self.add_piece(card, coordinates)
         return coordinates
 
     def collapse_board(self):
@@ -149,7 +149,6 @@ class Board():
         Return: list (str)
         """
         targets = list(set([coord for row in self.find_neighbors(coordinates, limit=self.size) for coord in row]))
-        print(targets)
         discards = [self.get_piece(cell) for cell in targets if not self.is_blank(cell)]
         for cell in targets:
             self.remove_piece(cell)
@@ -229,13 +228,13 @@ class Board():
             self.remove_piece(each)
         return discard
 
-    def play_card(self, column, card):
+    def play_card(self, card, column):
         """ Plays a card onto the board. Returns a score and the discarded cards.
         column: int
         card: str
         Return: int, list (str)
         """
-        result = self.drop_piece(column, card)
+        result = self.drop_piece(card, column)
         discards = []
         score = 0
         # If the card played is a color card, check for matches and update the score.

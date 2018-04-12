@@ -1,4 +1,5 @@
 from random import shuffle
+import copy
 
 COLORS = { 
     '0': 'Blank',
@@ -44,9 +45,9 @@ class Deck():
         """ The discard begins empty. """
         self.discard = []        
 
-    def shuffle(self):
+    def shuffle_deck(self):
         """ Refills the deck with discarded cards and shuffles them. """
-        self.deck = list(self.discard)
+        self.deck += self.discard
         self.discard = []
         shuffle(self.deck)
 
@@ -54,9 +55,10 @@ class Deck():
         """ Returns the next card in the deck. If the deck is empty, it shuffles the discards. 
         Return: string
         """
-        if len(self.deck) < 1:
-            self.shuffle()
-        return self.deck.pop(0)
+        card = self.deck.pop(0)
+        if not self.deck:
+            self.shuffle_deck()
+        return card
 
     def draw_hand(self):
         """ Returns a number of cards equal to the required hand size.

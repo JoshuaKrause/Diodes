@@ -10,6 +10,7 @@ class Game():
         self.player_one = player_one
         self.player_two = player_two
         self.active_player = self.player_one
+        self.other_player = self.player_two
 
         self.board = board.Board()
         self.deck = deck.Deck()
@@ -21,8 +22,10 @@ class Game():
         """ Switch current player to the next player. """
         if self.active_player == self.player_one:
             self.active_player = self.player_two
+            self.other_player = self.player_one
         else:
             self.active_player = self.player_one
+            self.other_player = self.player_two
 
     def fill_random_board(self, pieces):
         """ Fills the board with random cards.
@@ -30,19 +33,19 @@ class Game():
         """
         total = pieces
         while total > 0:
-            x = random.choice(self.board.get_moves())[0]
+            column = random.choice(self.board.get_moves())
             card = self.deck.draw_card()
             while card not in deck.COLOR_CARDS:
                 self.deck.discard_card(card)
                 card = self.deck.draw_card()
-            self.board.drop_piece(x, card)
+            self.board.drop_piece(card, column)
             total -= 1
 
-    def copy_board(self):
+    def copy_game(self):
         """ Returns a deep copy of the game board.
         Return: board object
         """
-        return copy.deepcopy(self.board)
+        return copy.deepcopy(self)
 
     def loop(self):
         """ Simple game loop function. """
@@ -59,16 +62,28 @@ class Game():
             if not self.active_player.check_hand(card):
                 print('Invalid card.')
             else:
-                self.active_player.remove_card(card)
-                self.active_player.draw_card(self.deck.draw_card())
-
-                score, discards = self.board.play_card(int(column), card)
-                
-                self.active_player.score += score
-                self.deck.discard_cards(discards)
-                
-                self.switch_player()
+                column = int(column)
+                self.apply_move(card, column)
             self.loop()
+
+    def apply_move(self, card, column):
+        self.active_player.remove_card(card)
+        card = self.deck.draw_card()
+        if card == None:
+            Exception("Bad card!")
+        self.active_player.draw_card(self.deck.draw_card())
+
+        score, discards = self.board.play_card(card, column)
+        
+        self.active_player.score += score
+        self.deck.discard_cards(discards)
+        
+        self.switch_player()
+
+    def forecast_move(self, card, column):
+        game = self.copy_game()
+        game.apply_move(card, column)
+        return game
 
     def __str__(self):
         output = str(self.board)
@@ -77,9 +92,5 @@ class Game():
         output += "Player One score: {}\nPlayer Two score: {}".format(self.player_one.score, self.player_two.score)
         output += "\n"
         return output
-
-
-game = Game()
-game.loop()
 
 
