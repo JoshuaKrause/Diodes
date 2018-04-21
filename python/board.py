@@ -246,7 +246,7 @@ class Board():
 
         # If the card is a special card, use its unique mechanics.
         else:
-            discards.append(self.remove_piece(result))
+            discards.append(self.get_piece(result))
             self.remove_piece(result)
             if card == '[':
                 self.rotate_left()

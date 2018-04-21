@@ -55,10 +55,9 @@ class Deck():
         """ Returns the next card in the deck. If the deck is empty, it shuffles the discards. 
         Return: string
         """
-        card = self.deck.pop(0)
         if not self.deck:
             self.shuffle_deck()
-        return card
+        return self.deck.pop(0)
 
     def draw_hand(self):
         """ Returns a number of cards equal to the required hand size.
