@@ -68,15 +68,13 @@ class Game():
 
     def apply_move(self, card, column):
         self.active_player.remove_card(card)
-        card = self.deck.draw_card()
-        if card == None:
-            Exception("Bad card!")
         self.active_player.draw_card(self.deck.draw_card())
 
         score, discards = self.board.play_card(card, column)
         
         self.active_player.score += score
-        self.deck.discard_cards(discards)
+        if discards:
+            self.deck.discard_cards(discards)
         
         self.switch_player()
 
