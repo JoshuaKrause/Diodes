@@ -43,30 +43,33 @@ class Game():
 
     def copy_game(self):
         """ Returns a deep copy of the game board.
-        Return: board object
+        Return: Board object
         """
         return copy.deepcopy(self)
 
-    def loop(self):
+    def player_move(self):
         """ Simple game loop function. """
         active = True
-        while active:    
-            print(self)
+        while active:
             player_input = input('Which card,column: ')
             try:
                 card, column = player_input.split(',')
-            except:
-                print('Bad input')
-            if column == 8:
-                break
-            if not self.active_player.check_hand(card):
-                print('Invalid card.')
-            else:
+                if not self.active_player.check_hand(card):
+                    print('Invalid card.')
+                    continue
                 column = int(column)
                 self.apply_move(card, column)
-            self.loop()
+                active = False
+            except:
+                print('Bad input')
+                continue
+
 
     def apply_move(self, card, column):
+        """ Applies a move to the board and updates the active player's hand. Then switches players.
+        card: specified card (string)
+        column: target column (int)
+        """
         self.active_player.remove_card(card)
         self.active_player.draw_card(self.deck.draw_card())
 
@@ -79,6 +82,11 @@ class Game():
         self.switch_player()
 
     def forecast_move(self, card, column):
+        """ Creates a copy of the game and applies the supplied move.
+        card: string
+        column: int
+        Return: Game object
+        """
         game = self.copy_game()
         game.apply_move(card, column)
         return game

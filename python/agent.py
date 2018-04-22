@@ -3,11 +3,16 @@ import random
 class Agent():
 
     def __init__(self, game):
+        """ Set up the game for testing and the initial player positions. """
         self.game = game
         self.max_player = self.game.active_player
         self.min_player = self.game.other_player
 
     def score(self, game):
+        """ Compare the final player scores with the original player scores. 
+        game: Advanced game (Game object)
+        Return: int
+        """
         if self.max_player.name == game.active_player.name:
             final_max_player = game.active_player
             final_min_player = game.other_player
@@ -19,6 +24,14 @@ class Agent():
         return score
 
     def get_action(self, game, depth = 3, alpha=float("-inf"), beta=float("inf")):
+        """ Returns the best action through minimax searching with alpha-beta pruning.
+        game: The initial game object (Game object)
+        depth: The maximum depth levels to visit (default 3)
+        alpha: The alpha value
+        beta: The beta value
+
+        Return: card, column (string, int)
+        """
         cards = game.active_player.hand
         moves = game.board.get_moves()
 
@@ -38,6 +51,14 @@ class Agent():
         return best_move
 
     def min_value(self, game, depth, alpha, beta):
+        """ Find the minimum value through recusive search.
+        game: current game (Game object)
+        depth: current depth
+        alpha: current alpha value
+        beta: current beta value
+
+        Return: int
+        """
         """
         if self.time_left() < self.TIMER_THRESHOLD:
             raise SearchTimeout()        
@@ -54,6 +75,14 @@ class Agent():
             return v
 
     def max_value(self, game, depth, alpha, beta):
+        """ Find the maximum value through recusive search.
+        game: current game (Game object)
+        depth: current depth
+        alpha: current alpha value
+        beta: current beta value
+
+        Return: int
+        """
         """
         if self.time_left() < self.TIMER_THRESHOLD:
             raise SearchTimeout()
@@ -79,6 +108,11 @@ class Agent():
             return False
 
     def get_all_moves(self, game):
+        """ Return all possible moves for the active player.
+        game = The current game object
+
+        Return: list
+        """
         cards = game.active_player.hand
         moves = game.board.get_moves()
         return list(set([(card, move) for card in cards for move in moves]))

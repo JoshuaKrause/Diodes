@@ -260,9 +260,11 @@ class Board():
         # Collapse the board after each play and check for any secondary matches.
         self.collapse_board()
         matches = self.check_all_match()
-        if matches:
+        while matches:
             score += len(matches)
             discards += self.clear_matches(matches)
+            self.collapse_board()
+            matches = self.check_all_match()
         return score, discards
 
     def __str__(self):

@@ -1,5 +1,4 @@
 from random import shuffle
-import copy
 
 COLORS = { 
     '0': 'Blank',
@@ -13,7 +12,7 @@ COLORS = {
     '!': 'Bomb'  # bomb
     }
 
-COLOR_CARDS = ['R', 'G', 'B', 'O']
+COLOR_CARDS = ['A', 'B', 'C', 'D']
 SPECIAL_CARDS = ['[', ']', '@', '!']
 
 HAND_SIZE = 3
@@ -24,12 +23,12 @@ class Deck():
         """ Creates a deck of colored cards. Total is equal to twice the area of the board.
         board_size: size of the board
         """
-        initial_split = 20
+        initial_split = 50
 
         total_cards = board_size ** 2 * 2 # 128 in a default board. 512 in a 16x16 board.
         
-        color_multiplier = int(total_cards * .75 / len(COLOR_CARDS))
-        special_multiplier = int(total_cards * .25 / len(SPECIAL_CARDS))
+        color_multiplier = int(total_cards * .9 / len(COLOR_CARDS))
+        special_multiplier = int(total_cards * .1 / len(SPECIAL_CARDS))
 
         initial_deck = COLOR_CARDS * color_multiplier
         shuffle(initial_deck)
